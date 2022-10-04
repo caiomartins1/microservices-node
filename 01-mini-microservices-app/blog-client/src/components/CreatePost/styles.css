@@ -1,0 +1,23 @@
+.create-post-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 20rem;
+  color: #0f0f0f;
+
+  padding: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-weight: bold;
+  font-size: 1.5rem;
+
+  margin-bottom: 8px;
+}
+
+.form-control {
+  padding: 8px 16px 8px;
+}
