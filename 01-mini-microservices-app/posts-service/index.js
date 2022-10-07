@@ -12,6 +12,7 @@ const posts = [];
 app.get('/posts', (request, response) => {
   response.send(posts);
 });
+
 app.post('/posts', async (request, response) => {
   const id = uuid();
   const { title } = request.body;
@@ -32,6 +33,11 @@ app.post('/posts', async (request, response) => {
   } catch (e) {}
 
   response.status(201).send({ id, title });
+});
+
+app.post('/events', (req, res) => {
+  console.log('Received Event', req.body.type);
+  res.send({});
 });
 
 app.listen(4000, () => {
