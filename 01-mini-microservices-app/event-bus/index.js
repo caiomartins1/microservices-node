@@ -14,5 +14,5 @@ app.post('/events', async (req, res) => {
 });
 
 app.listen(4005, () => {
-  console.log('Event Bus at 4003');
+  console.log('Event Bus at 4005');
 });

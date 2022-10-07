@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,7 @@ const posts = [];
 app.get('/posts', (request, response) => {
   response.send(posts);
 });
-app.post('/posts', (request, response) => {
+app.post('/posts', async (request, response) => {
   const id = uuid();
   const { title } = request.body;
 
@@ -19,6 +20,16 @@ app.post('/posts', (request, response) => {
     id,
     title,
   });
+
+  try {
+    await axios.post('http://localhost:4005/events', {
+      type: 'PostCreated',
+      data: {
+        id,
+        title,
+      },
+    });
+  } catch (e) {}
 
   response.status(201).send({ id, title });
 });
