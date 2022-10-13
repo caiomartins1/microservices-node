@@ -8,13 +8,14 @@ import './styles.css';
 interface Post {
   id: string;
   title: string;
+  comments: { id: string; content: string }[];
 }
 
 export default function PostList() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   async function fetchPosts() {
-    const res = await axios.get('http://localhost:4000/posts');
+    const res = await axios.get('http://localhost:4002/posts');
     setPosts(res.data);
   }
 
@@ -29,7 +30,7 @@ export default function PostList() {
           <div key={post.id} className="card">
             <div className="card-body">
               <h3>{post.title}</h3>
-              <CommentsList postId={post.id} />
+              <CommentsList comments={post.comments} />
               <CreateComment postId={post.id} />
             </div>
           </div>

@@ -3,28 +3,14 @@ import { useEffect, useState } from 'react';
 import './styles.css';
 
 interface Props {
-  postId: string;
+  comments: Comment[];
 }
 interface Comment {
   content: string;
   id: string;
 }
 
-export default function CommentsList({ postId }: Props) {
-  const [comments, setComments] = useState<Comment[]>([]);
-
-  async function fetchComments() {
-    const res = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`,
-    );
-
-    setComments(res.data);
-  }
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
+export default function CommentsList({ comments }: Props) {
   return (
     <ul>
       {comments.map((comment) => {
